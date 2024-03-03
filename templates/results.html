@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arama Sonuçları</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Arama Sonuçları: "{{ query }}"</h2>
+    <div class="list-group">
+        {% for article in articles %}
+        <a href="/article/{{ article._id }}" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">{{ article.title }}</h5>
+            <p class="mb-1">Tür: {{ article.section }}</p>
+            <small>Yazarlar: {{ article.authors|join(', ') }}</small>
+        </a>
+        {% else %}
+        <p class="text-muted">Sonuç bulunamadı.</p>
+        {% endfor %}
+    </div>
+    <a href="/" class="btn btn-link">Yeni Arama</a>
+</div>
+</body>
+</html>
