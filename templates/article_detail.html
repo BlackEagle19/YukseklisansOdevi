@@ -21,6 +21,11 @@
                     <p>Yazarlar: {{ article.authors|join(', ') }}</p>
                     <p>Yayımlanma Tarihi: {{ article.publication_date }}</p>
                     <p>DOI: {{ article.doi }}</p>
+                    <p>Referanslar: {{article.references}}</p>
+                    <p>Anahtar Kelimeler(Arama motorunda aratılan):{{article.query}}</p>
+                    <p>Anahtar Kelimeler(Makaleye ait):{{article.keywords}}</p>
+                    <p>Alıntı Sayısı:{{article.references_count}}</p>
+                    <p>Yayıncı Adı: {{article.publisher_name}}</p>
                 </div>
                 <div class="flex space-x-4">
                     <a href="{{ article.download_link }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" target="_blank">Tam Metni İndir</a>

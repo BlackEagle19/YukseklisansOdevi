@@ -6,6 +6,21 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container mx-auto">
+    <form action="" method="GET" class="flex flex-col space-y-4">
+        <input type="text" name="author" placeholder="Author" class="input input-bordered" value="{{ filters['author']|default('') }}">
+        <input type="text" name="publication_date" placeholder="Publication Date" class="input input-bordered" value="{{ filters['publication_date']|default('') }}">
+        <input type="text" name="section" placeholder="section" class="input input-bordered" value="{{ filters['section']|default('') }}">
+        <input type="number" name="references_count" placeholder="Min References Count" class="input input-bordered" value="{{ filters['references_count']|default('') }}">
+        <select name="sort" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>En Yeniden En Eskiye</option>
+            <option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>En Eskiden En Yeniye</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
+    </form>
+    
+</div>
+
 <div class="container">
     <h2 class="mt-5">Arama Sonuçları: "{{ query }}"</h2>
     <div class="list-group">

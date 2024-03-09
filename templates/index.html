@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Arama Sayfası</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-    <h2 class="mt-5">Makale Arama</h2>
-    <form action="/search" method="post">
-        <div class="form-group">
-            <label for="query">Arama Terimi:</label>
-            <input type="text" class="form-control" id="query" name="query" required>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-gray-800 mt-10 mb-5">Makale Arama</h2>
+    <form action="/search" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label for="query" class="block text-gray-700 text-sm font-bold mb-2">Arama Terimi:</label>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="query" name="query" required>
         </div>
-        <button type="submit" class="btn btn-primary">Ara</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Ara</button>
     </form>
+</div>
+<div class="container mx-auto px-4 mt-5">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-5">Makaleler</h2>
+    <div class="space-y-4">
+        {% for article in articles %}
+            <!-- Modern card design for each article -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <a href="{{ url_for('article_detail', article_id=article._id) }}" class="hover:text-blue-500">
+                    <h5 class="text-xl font-semibold mb-2">{{ article.title }}</h5>
+                    <p class="text-gray-700">Yazarlar: {{ article.authors|join(', ') }}</p>
+                    <p class="text-sm text-gray-600">Yayımlanma Tarihi: {{ article.publication_date }}</p>
+                    <p class="text-sm text-gray-500">DOI: {{ article.doi }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>
